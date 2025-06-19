@@ -1,4 +1,3 @@
-
 import time
 from typing import Optional, Tuple
 from appium.webdriver import WebElement
@@ -11,26 +10,25 @@ import logging
 
 
 class BasePage:
-    # To do: DEFAULT_TIMEOUT should read from config file 
+    # To do: DEFAULT_TIMEOUT should read from config file
     DEFAULT_TIMEOUT = 300
     current_day = time.strftime("%Y%m%d")
-    
 
     def __init__(self, driver):
         self.driver = driver
 
     # explicit wait to find the element
     def find_element(self, locator: Tuple[str, str], timeout: Optional[int] = None,
-              expected_condition: EC = EC.visibility_of_element_located, ) -> WebElement:
+                     expected_condition: EC = EC.visibility_of_element_located, ) -> WebElement:
         current_time = time.strftime("%Y%m%d_%H%M%S")
         if not timeout:
             timeout = self.DEFAULT_TIMEOUT
-        try: 
+        try:
             return WebDriverWait(self.driver, timeout).until(expected_condition(locator))
-        except Exception as e:  
+        except Exception as e:
             self.driver.save_screenshot(path=f"screenshots/{self.current_day}/error_{current_time}.png", full_page=True)
-            logging.error(f"Failed to locate the element: {locator}")  
-            raise e  
+            logging.error(f"Failed to locate the element: {locator}")
+            raise e
 
     def is_visible(self, locator) -> bool:
         try:
@@ -58,7 +56,7 @@ class BasePage:
                 EC.presence_of_element_located(locator)
             )
             logging.info(f"Element {locator} is returned，please go on test the element feature")
-            return element 
+            return element
         except TimeoutException:
             logging.warning(f"Wait for {timeout}s element not found : {locator}")
             self.driver.save_screenshot(path=f"screenshots/{self.current_day}/error_{current_time}.png", full_page=True)

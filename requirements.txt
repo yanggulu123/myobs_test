@@ -1,0 +1,25 @@
+# Core Testing
+pytest==7.4.3  # 用于编写和运行单元测试和功能测试
+behave==1.2.6  # 支持行为驱动开发（BDD）的测试框架
+appium-python-client==3.1.0  # Appium的Python客户端库，用于移动应用自动化测试
+selenium==4.15.2  # 用于Web自动化测试
+
+# Reporting
+allure-pytest==2.13.2  # 为pytest测试生成Allure报告
+allure-behave==2.9.4  # 为behave测试生成Allure报告
+
+# Utilities
+PyYAML==6.0.1  # 用于处理YAML配置文件
+requests==2.31.0  # 用于发送HTTP请求
+pytest-xdist==3.5.0  # 支持pytest测试的并行执行
+pytest-rerunfailures==13.0  # 支持pytest失败测试用例的重试
+
+# Android
+uiautomator2==2.16.30  # 用于Android设备的自动化测试
+
+# iOS
+facebook-wda==1.1.7  # 用于iOS设备的自动化测试
+
+# Code Quality
+black==23.11.0  # 代码格式化工具
+pylint==3.0.3  # 代码静态分析工具
